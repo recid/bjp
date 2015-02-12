@@ -1,0 +1,118 @@
+<form name="basicform" id="basicform" method="post" action="yourpage.html">
+ 
+  <div id="sf1" class="frm">
+    <fieldset>
+      <legend>Etape 1 / 3</legend>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="uname">Votre nom : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Prénom Nom" id="uname" name="uname" class="form-control" autocomplete="off">
+        </div>
+      </div>
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="umanager">Votre manager : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Prénom Nom" id="umanager" name="umanager" class="form-control" autocomplete="off">
+        </div>
+      </div>
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-1">
+          <button class="btn btn-primary open1" type="button">Next <span class="fa fa-arrow-right"></span></button> 
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+
+  <div id="sf2" class="frm" style="display: none;">
+    <fieldset>
+      <legend>Etape 2 of 3</legend>
+
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="cname">Nom du client : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Nom du client" id="cname" name="cname" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="ccontactname">Nom du contact chez le client : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Nom du contact" id="ccontactname" name="ccontactname" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="ccontacttel">Téléphone du contact : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Téléphone du contact" id="ccontacttel" name="ccontacttel" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-1">
+          <button class="btn btn-warning back2" type="button"><span class="fa fa-arrow-left"></span> Back</button> 
+          <button class="btn btn-primary open2" type="button">Next <span class="fa fa-arrow-right"></span></button> 
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+
+  <div id="sf3" class="frm" style="display: none;">
+    <fieldset>
+      <legend>Etape 3 of 3</legend>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="missionname">Intitulé de la prestation : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Intitulé de la prestation" id="missionname" name="missionname" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="missioncode">Référence du projet : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="interne : XXXXX-XX / bon de commande : XXXXXXX" id="missioncode" name="missioncode" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <label class="col-md-1 control-label" for="missionnature">Nature de la mission : </label>
+        <div class="col-md-4">
+          <input type="text" placeholder="Nature de la mission" id="missionnature" name="missionnature" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-1">
+          <button class="btn btn-warning back3" type="button"><span class="fa fa-arrow-left"></span> Back</button> 
+          <button class="btn btn-primary open3" type="button">Submit </button> 
+        </div>
+      </div>
+
+    </fieldset>
+  </div> 
+
+</form>
