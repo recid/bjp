@@ -71,6 +71,14 @@ jQuery().ready(function() {
         $("#sf3").show("slow");
       }
     });
+
+   // Binding next button on third step
+   $(".open3").click(function() {
+      if (v.form()) {
+        $(".frm").hide("fast");
+        $("#sf4").show("slow");
+      }
+    });
  
      // Binding back button on second step
     $(".back2").click(function() {
@@ -83,8 +91,14 @@ jQuery().ready(function() {
       $(".frm").hide("fast");
       $("#sf2").show("slow");
     });
+
+     // Binding back button on fourth step
+     $(".back4").click(function() {
+      $(".frm").hide("fast");
+      $("#sf3").show("slow");
+    });
  
-    $(".open3").click(function() {
+    $(".open4").click(function() {
       if (v.form()) {
         // optional
         // used delay form submission for a seccond and show a loader image
@@ -96,4 +110,12 @@ jQuery().ready(function() {
         return false;
       }
     });
+  $('#choosecalendar').multiDatesPicker({
+	  	beforeShowDay: $.datepicker.noWeekends,
+		showWeek: true,
+		changeMonth: false,
+		changeYear: false,
+		stepMonths: false,
+		altField: "#choosedate",
+  });
 });
