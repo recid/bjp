@@ -1,0 +1,18 @@
+INSTALL
+-------
+
+For python script:
+apt-get install python-yaml python3-yaml
+
+For latex command:
+apt-get install texlive-lang-french texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra latexmk
+
+USAGE
+-----
+
+Generates cartouche.tex and calendrier.tikz:
+./bjp.py bjp-test.yaml
+
+Generate pdf:
+latexmk -pdf bjp.tex
+

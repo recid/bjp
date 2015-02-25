@@ -1,0 +1,18 @@
+annee: 2015
+calendrier: 
+  6: am
+  7: OK
+  8: OK
+  9: ma
+client: 
+  adresse: "80 rue Roque de Fillol,\n92800 Puteaux, France"
+  contact: NOM CONTACT / 0102030405
+  nom: NOMCLIENT
+linagora: 
+  intervenant: MOI
+  responsable: MON MANAGER
+mission: 
+  nature: NATURE MISSION
+  prestation: NOM MISSION
+  projet: CODE PROJET
+mois: 1

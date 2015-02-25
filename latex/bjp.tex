@@ -1,0 +1,122 @@
+\documentclass[a4paper,10pt,DIV=27,footheight=51pt,footinclude=true]{scrartcl}
+
+\usepackage{fixltx2e}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+
+\usepackage{arev}
+
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{scrlayer-scrpage}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{xcolor}
+
+% scrartcl
+
+\KOMAoptions
+{
+	parskip	= half- ,
+}
+
+% array
+
+\setlength{\extrarowheight}{2pt}
+
+% scrlayer-scrpage
+
+\setfootsepline{1pt}
+
+\setkomafont{pageheadfoot}{\normalfont}
+
+\cfoot{\rule{0pt}{2ex}%
+	Groupe LINAGORA SA au capital de \EUR{2 257 140}	\\
+	80, rue Roque de Fillol - 92800 PUTEAUX - FRANCE	\\
+	Tél. +33 (0)1 46 96 63 63 - Fax +33 (0)1 46 96 63 64	\\
+	RCS PARIS B 431 473 669 00098 - TVA FR 57 431 473 669 00098}
+
+% tikz
+
+\usetikzlibrary{calc}
+
+% xcolor
+
+\definecolor{linarouge}{HTML}{C00D2D}
+
+%
+
+\newcommand{\titre}[1]{\textcolor{linarouge}{\bfseries #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\begin{minipage}[b]{0.4\textwidth}
+\begin{flushleft}
+\textbf{Groupe LINAGORA}	\\
+80, rue Roque de Fillol		\\
+92800 PUTEAUX			\\
+FRANCE				\\
+\end{flushleft}
+\end{minipage}
+&
+\includegraphics[width=0.3\textwidth]{linagora.png}
+\end{tabular*}
+
+\begin{tabular}{@{}l@{}l}
+Tél. & : +33 (0)1 46 96 63 63	\\
+Fax  & : +33 (0)1 46 96 63 64
+\end{tabular}
+
+\begin{center}
+\large\bfseries BULLETIN JOURNALIER DE PRÉSENCE
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{cartouche}
+
+Merci de signer dans chacune des cases correspondant à une journée ou à une
+demi-journée de présence.
+
+\includegraphics[width=\textwidth]{calendrier.tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vfill
+
+\begin{center}
+
+\begin{tabular}{|>{\centering\arraybackslash}p{15em}|}
+\hline
+Signature de l'intervenant	\\
+				\\
+				\\
+				\\
+				\\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|>{\centering\arraybackslash}p{15em}|}
+\hline
+Cachet et signature du client	\\
+				\\
+				\\
+				\\
+				\\
+\hline
+\end{tabular}
+
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
