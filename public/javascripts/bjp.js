@@ -110,12 +110,18 @@ jQuery().ready(function() {
         return false;
       }
     });
-  $('#choosecalendar').multiDatesPicker({
-	  	beforeShowDay: $.datepicker.noWeekends,
-		showWeek: true,
-		changeMonth: false,
-		changeYear: false,
-		stepMonths: false,
-		altField: "#choosedate",
+    
+  // Calendar
+  var el = document.getElementById('datepickr-half');
+  var output = document.getElementById('output-half');
+
+  new Datepickr(el, function(res) {
+    output.value = JSON.stringify(res);
+  }, {
+    halfDay: true,
+    greyWeekends: true,
+    weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    months: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
   });
+
 });

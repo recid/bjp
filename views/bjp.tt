@@ -123,7 +123,7 @@
       <div class="form-group">
         <label class="col-md-1 control-label" for="choosedate">Choisissez vos jours de mission : </label>
         <div class="col-md-4">
-          <input type="text" placeholder="" id="choosedate" name="choosedate" class="form-control" autocomplete="off">
+          <input type="text" placeholder="" id="output-half" name="output-half" class="form-control" autocomplete="off" />
         </div>
       </div>
 
@@ -133,6 +133,7 @@
         <label class="col-md-1 control-label" for="choosecalendar">Choisissez vos jours de mission : </label>
         <div class="col-md-4">
           <div id="choosecalendar"></div>
+          <div id='datepickr-half'></div>
         </div>
       </div>
 
@@ -148,6 +149,5 @@
 
     </fieldset>
   </div> 
-
 
 </form>

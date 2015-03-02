@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<% request.uri_base %>/css/jquery-ui.css" />-
 <link rel="stylesheet" href="<% request.uri_base %>/css/jquery-ui.structure.css" />
 <link rel="stylesheet" href="<% request.uri_base %>/css/jquery-ui.theme.css" />-
+<link rel="stylesheet" href="<% request.uri_base %>/css/datepickr.css" />-
 
 <!-- Grab jQuery from a CDN, fall back to local if necessary -->
 <!--<script type="text/javascript">/* <![CDATA[ */
@@ -21,7 +22,7 @@
 <script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery-ui-1.11.1.js"></script>
 <script type="text/javascript" src="<% request.uri_base %>/javascripts/bootstrap.min.js"></script>
-<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery-ui.multidatespicker.js"></script>
+<script type="text/javascript" src="<% request.uri_base %>/javascripts/datepickr.js"></script>
 <script type="text/javascript" src="<% request.uri_base %>/javascripts/bjp.js"></script>
 
 </head>
