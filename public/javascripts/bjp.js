@@ -32,6 +32,11 @@ jQuery().ready(function() {
           maxlength: 14,
           phoneNumber: true
         },
+        ccontactaddress: {
+          required: true,
+          minlength: 5,
+          maxlength: 200,
+        },
         missionname: {
           required: true,
           minlength: 2,
@@ -102,12 +107,12 @@ jQuery().ready(function() {
       if (v.form()) {
         // optional
         // used delay form submission for a seccond and show a loader image
-        $("#loader").show();
-         setTimeout(function(){
-           $("#basicform").html('<h2>Thanks for your time.</h2>');
-         }, 1000);
-        // Remove this if you are not using ajax method for submitting values
-        return false;
+        // setTimeout(function(){
+        //   $("#basicform").html('<h2>Thanks for your time.</h2>');
+        // }, 1000);
+        //// Remove this if you are not using ajax method for submitting values
+        //return false;
+	$("#basicform").submit();
       }
     });
     
