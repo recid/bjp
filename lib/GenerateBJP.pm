@@ -61,9 +61,9 @@ sub displayBJP {
   $cal =~ s/\],/|/g;      # replacing dates separators (,) by |
   $cal =~ s/[\[\]]//g;    # deleting [ and ]
 
-  $cal =~ s/"*0\.1"*/am/; # replace half-day notation by OK, ma, am
-  $cal =~ s/"*1\.0"*/ma/;
-  $cal =~ s/"*1\.1"*/OK/;
+  $cal =~ s/"*0\.1"*/am/g; # replace half-day notation by OK, ma, am
+  $cal =~ s/"*1\.0"*/ma/g;
+  $cal =~ s/"*1\.1"*/OK/g;
 
   # create the hash
   my %cal = map { split /,/ } split /\|/, $cal;
