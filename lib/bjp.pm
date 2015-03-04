@@ -4,6 +4,9 @@ BEGIN { $ENV{'DANCER_ENVIRONMENT'} = 'production' }
 
 use Dancer2;
 use GenerateBJP;
+use Cwd 'abs_path';
+my $script_path = abs_path($0);
+$script_path =~ s/bin.*$//;
 
 our $VERSION = '1.0';
 
@@ -24,7 +27,15 @@ any ['get'] => qr{^/bjp.*} => sub {
 
 any ['post'] => qr{^/bjp.*} => sub {
   my $post = request->params;
-  &GenerateBJP::displayBJP($post);
+  my $file = &GenerateBJP::displayBJP($post);
+
+  return send_file(
+        $script_path."/latex/".$file,
+        content_type => 'application/pdf',
+        filename => 'bjp.pdf',
+        system_path => 1
+  );
+
 };
 
 true;

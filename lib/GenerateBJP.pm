@@ -18,7 +18,8 @@ $YAML::Syck::Headless = 1;
 # Configuration section
 ################################################################################
 
-my $yaml_file = 'bjp-test.yaml';
+my $command = "python3";
+my $latexScript = "latex/bjp.py";
 
 
 
@@ -45,12 +46,6 @@ sub generate_conf {
 
 # Entry point
 ################################################################################
-
-
-
-
-#&generate_conf($conf, $yaml_file);
-
 
 
 sub displayBJP {
@@ -100,9 +95,23 @@ sub displayBJP {
     calendrier => $calendar,
   };
 
-  use Data::Dumper;
-  print Dumper($conf);
-  print Dumper($params);
+  my $yaml_file = "latex/var/bjp-".time().".yml";
+
+  &generate_conf($conf, $yaml_file);
+
+  system($command, $latexScript, $yaml_file);
+  if ( $? == -1 )
+  {
+    print STDERR "command failed: $!\n";
+  }
+
+  system("latexmk", "-pdf", "-cd", "latex/bjp.tex");
+  if ( $? == -1 )
+  {
+    print STDERR "command failed: $!\n";
+  }
+
+  return "bjp.pdf";
 }
 
 

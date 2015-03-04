@@ -11,7 +11,7 @@ if argc != 2 :
 with open ( sys.argv[1] , 'r' ) as f :
     bjp = yaml.load ( f )
 
-with open ( 'cartouche.tex' , 'w' ) as cartouche :
+with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
 
     print ( '\\begin{tabularx}{\\textwidth}{|X|X|}' , file = cartouche )
     print ( '\\hline' , file = cartouche )
@@ -75,7 +75,7 @@ with open ( 'cartouche.tex' , 'w' ) as cartouche :
     print ( '\\addsec{' , nom_mois[mois] , ' ' , annee , '}' ,
 		sep = '' , file = cartouche )
 
-with open ( 'calendrier.tikz' , 'w' ) as tikz :
+with open ( 'latex/calendrier.tikz' , 'w' ) as tikz :
 
     print ( '\\begin{tikzpicture}' , file = tikz )
 
