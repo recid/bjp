@@ -1,8 +1,14 @@
 package bjp;
+
+BEGIN { $ENV{'DANCER_ENVIRONMENT'} = 'production' }
+
 use Dancer2;
 use GenerateBJP;
 
-our $VERSION = '0.1';
+our $VERSION = '1.0';
+
+set port => "3000";
+
 
 get '/' => sub {
     template 'index';
