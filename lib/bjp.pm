@@ -27,7 +27,7 @@ any ['get'] => qr{^/bjp.*} => sub {
 
 any ['post'] => qr{^/bjp.*} => sub {
   my $post = request->params;
-  my $file = &GenerateBJP::displayBJP($post);
+  my $file = &GenerateBJP::displayBJP($post, $script_path);
 
   return send_file(
         $script_path."/latex/".$file,

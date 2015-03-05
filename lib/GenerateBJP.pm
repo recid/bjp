@@ -50,6 +50,7 @@ sub generate_conf {
 
 sub displayBJP {
   my $params = shift @_;
+  my $script_path = shift @_;
 
   my $cal = $params->{"output-half"};
 
@@ -105,7 +106,7 @@ sub displayBJP {
     print STDERR "command failed: $!\n";
   }
 
-  system("latexmk", "-pdf", "-cd", "latex/bjp.tex");
+  system("latexmk", "-pdf", "-cd", "-outdir=$script_path/latex", "latex/bjp.tex");
   if ( $? == -1 )
   {
     print STDERR "command failed: $!\n";
