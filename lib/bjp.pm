@@ -7,6 +7,7 @@ use GenerateBJP;
 use Cwd 'abs_path';
 my $script_path = abs_path($0);
 $script_path =~ s/bin.*$//;
+$script_path =~ s/\/$//; # remove trailing slash if any
 
 our $VERSION = '1.0';
 

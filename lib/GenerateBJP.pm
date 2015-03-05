@@ -106,6 +106,8 @@ sub displayBJP {
     print STDERR "command failed: $!\n";
   }
 
+  system("rm", "-f", "$script_path/latex/bjp.pdf");
+  print STDERR "-outdir=$script_path/latex";
   system("latexmk", "-pdf", "-cd", "-outdir=$script_path/latex", "latex/bjp.tex");
   if ( $? == -1 )
   {
