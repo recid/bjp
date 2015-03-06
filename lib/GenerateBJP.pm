@@ -108,11 +108,13 @@ sub displayBJP {
 
   system("rm", "-f", "$script_path/latex/bjp.pdf", "$script_path/latex/bjp.aux", "$script_path/latex/bjp.fls", "$script_path/latex/bjp.log", "$script_path/latex/bjp.fdb_latexmk");
   print STDERR "-outdir=$script_path/latex";
-  system("latexmk", "-pdf", "-cd", "-outdir=$script_path/latex", "latex/bjp.tex");
+  system("cd" "latex");
+  system("latexmk", "-pdf", "-outdir=$script_path/latex", "latex/bjp.tex");
   if ( $? == -1 )
   {
     print STDERR "command failed: $!\n";
   }
+  system("cd" "..");
 
   return "bjp.pdf";
 }
