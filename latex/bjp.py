@@ -2,14 +2,18 @@
 
 import calendar
 import sys
-import yaml
+import sqlite
 
 argc = len ( sys.argv )
 if argc != 2 :
-    sys.exit ( 'Usage: bjp.py fichier.yaml' )
+    sys.exit ( 'Usage: bjp.py bjp_id' )
 
-with open ( sys.argv[1] , 'r' ) as f :
-    bjp = yaml.load ( f )
+bjp = sys.argv[2]
+
+connection = connect ('bjp.db')
+cur = connection.cursor()
+infos = cur.execute("select name, contact, address, intervenant, responsable, prestation, projet, nature from client inner join mission on client.bjp_id = mission.bjp_id inner join fournisseur on mission.bjp_id = fournisseur.bjp_id where client.bjp_id= '%s'" %bjp)
+[ name, contact, address, intervenant, responsable, prestation, projet, nature ] = infos.fetchone()
 
 with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
 
@@ -19,11 +23,11 @@ with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
     print ( '\\multicolumn{1}{c|}{\\titre{LINAGORA}} \\\\' , file = cartouche )
     print ( '\\hline' , file = cartouche )
     print ( '\\begin{tabular}{ll}' , file = cartouche )
-    print ( 'Nom :\t\t&' , bjp['client']['nom']  , '\\\\[1ex]' , file = cartouche )
+    print ( 'Nom :\t\t&' , name , '\\\\[1ex]' , file = cartouche )
 
     print ( 'Contact :\t& ' , end = '' , file = cartouche )
     prems = True
-    for l in bjp['client']['contact'].split ( '\n' ) :
+    for l in contact.split ( '\n' ) :
         if l != '' :
             if prems :
                 print ( l , '\\\\' , end = '' , file = cartouche )
@@ -35,7 +39,7 @@ with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
 
     print ( 'Adresse :\t& ' , end = '' , file = cartouche )
     prems = True
-    for l in bjp['client']['adresse'].split ( '\n' ) :
+    for l in address.split ( '\n' ) :
         if l != '' :
             if prems :
                 print ( l , '\\\\' , file = cartouche )
@@ -46,8 +50,8 @@ with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
     print ( '\\end{tabular}' , file = cartouche )
     print ( '&' , file = cartouche )
     print ( '\\begin{tabular}{ll}' , file = cartouche )
-    print ( 'Responsable :\t& ', bjp['linagora']['responsable'] , '\\\\[1ex]' , file = cartouche )
-    print ( 'Intervenant :\t& ', bjp['linagora']['intervenant'] , file = cartouche )
+    print ( 'Responsable :\t& ', responsable, '\\\\[1ex]' , file = cartouche )
+    print ( 'Intervenant :\t& ', intervenant, file = cartouche )
     print ( '\\end{tabular}' , file = cartouche )
     print ( '\\\\' , file = cartouche )
     print ( '\\hline' , file = cartouche )
@@ -56,17 +60,17 @@ with open ( 'latex/cartouche.tex' , 'w' ) as cartouche :
 
     print ( '\\begin{tabularx}{\\textwidth}{|>{\\columncolor[gray]{0.9}}r|X|}' , file = cartouche )
     print ( '\\hline' , file = cartouche )
-    print ( 'Intitulé de la prestation\t&' , bjp['mission']['prestation'] , '\\\\' , file = cartouche )
+    print ( 'Intitulé de la prestation\t&' , prestation, '\\\\' , file = cartouche )
     print ( '\\hline' , file = cartouche )
-    print ( 'Référence du projet\t\t&'     , bjp['mission']['projet']     , '\\\\' , file = cartouche )
+    print ( 'Référence du projet\t\t&'     , projet    , '\\\\' , file = cartouche )
     print ( '\\hline' , file = cartouche )
-    print ( 'Nature de la mission\t\t&'    , bjp['mission']['nature']     , '\\\\' , file = cartouche )
+    print ( 'Nature de la mission\t\t&'    , nature    , '\\\\' , file = cartouche )
     print ( '\\hline' , file = cartouche )
     print ( '\\end{tabularx}' , file = cartouche )
     print ( file = cartouche )
 
-    annee = bjp['annee']
-    mois  = bjp['mois']
+    annee = cur.execute("SELECT annee FROM calendrier WHERE bjp_id = '%s'" % bjp)
+    mois = cur.execute("SELECT mois FROM calendrier WHERE bjp_id = '%s'" % bjp)
     nom_mois = ( '' , 'Janvier' , 'Février' , 'Mars' ,
 		'Avril' , 'Mai' , 'Juin' ,
 		'Juillet' , 'Août' , 'Septembre' ,
@@ -101,25 +105,27 @@ with open ( 'latex/calendrier.tikz' , 'w' ) as tikz :
     nom_jour = ( 'lundi' , 'mardi' , 'mercredi' , 'jeudi' ,
 		'vendredi' , 'samedi' , 'dimanche' )
 
+    days = cur.execute("SELECT day, period from calendrier WHERE bjp_id= '%s'" %bjp)
     for j in calendrier.itermonthdays2 ( annee , mois ) :
 
         if j[0] != 0 :	# jour dans le mois
 
             x = j[1] * 2
 
-            if j[0] in bjp['calendrier'] :
-                if bjp['calendrier'][j[0]] == 'OK' :	# journée entière
+            if j[0] in days.fetchall() :
+                [day, period] = days.fetchone()
+                if period == 'OK' :	# journée entière
                     print ( '\\filldraw [ fill = yellow!100!blue!30 ] (' ,
 			x , ',' , y , ') rectangle (' ,
 			x + 2 , ',' , y + 1 , ') ;' ,
 			file = tikz )
-                elif bjp['calendrier'][j[0]] == 'ma' :	# matin
+                elif period == 'ma' :	# matin
                     print ( '\\filldraw [ fill = yellow!100!blue!30 ] (' ,
 			x , ',' , y , ') -- (' ,
 			x , ',' , y + 1 , ') -- (' ,
 			x + 2 , ',' , y + 1 , ') -- cycle ;' ,
 			file = tikz )
-                elif bjp['calendrier'][j[0]] == 'am' :	# après-midi
+                elif period == 'am' :	# après-midi
                     print ( '\\filldraw [ fill = yellow!100!blue!30 ] (' ,
 			x , ',' , y , ') -- (' ,
 			x + 2 , ',' , y , ') -- (' ,
